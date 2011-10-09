@@ -1,0 +1,68 @@
+<div class="block" id="block-text">
+  <%= render :partial => "/report/menu_stats" %>
+
+  <div class="content"> 
+    <h2 class="title">Users by countries</h2>
+    <div class="inner"> 
+      <p class="first">
+      </p>
+
+      <div id="placeholder" style="width:600px;height:300px"></div>
+      <script id="source" language="javascript" type="text/javascript">
+	$(function () {
+
+
+	<% count = 0 %>
+	<% @group_by_countries.each do | user | %>
+	<%#= os.values %>
+	<%= "var #{user['country']} = [[#{count.to_s}, #{user['count'].to_i}]];" %>
+	<% count += 2 %>
+	<% end %>
+
+
+	<% count = 1 %>
+	var data = [
+	<% @group_by_countries.each do | user | %>
+	<%= "{label: '#{user['country'].capitalize}', data: #{user['country']}, bars: { show: true }}" -%>
+	<%= "," if count < @group_by_countries.length -%>
+	    <% count += 1 %>
+	 <% end %>
+	];
+
+
+					 
+	 var options = {
+		 legend: { noColumns: 6 },
+	          yaxis: {tickDecimals: "number" }
+		 };
+
+					 
+	 var plot = $.plot($("#placeholder"), data, options);
+				 
+	 $("#overview").bind("plotselected", function (event, ranges) {
+			 plot.setSelection(ranges);
+			 });
+	 });
+ </script>
+
+
+
+
+
+      <p class="first">
+	<% if @hosts_count_os == 0 %>
+	  <%= I18n.t :nohost -%>
+	<% else %>
+	
+	<% @group_by_countries.each do | user | %>
+	  <%= link_to user['country'].capitalize, :id => user['country'] %>  (<%= user['count'] %> total)
+	  <br />
+	<% end %>
+
+	<% end %>
+      </p>
+
+
+    </div>
+  </div>
+</div>

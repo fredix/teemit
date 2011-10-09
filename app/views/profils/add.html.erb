@@ -1,0 +1,16 @@
+<div class="block" id="block-forms">
+  <div class="content">
+    <h2 class="title"><%= I18n.t(:profils) %></h2>
+    <div class="inner">
+
+      <% form_tag 'create', :html => {:class => "form"} do %>
+      <div class="group">
+      <%= render :partial => "form" %>
+      <div class="group navform">
+	<%= submit_tag "#{I18n.t(:add)} &rarr;", :html => {:class =>"button"} %>  <%= I18n.t(:or) %> <%= link_to I18n.t(:cancel), :controller => :profils, :action => :list %>
+      </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,246 @@
+  <%= render :partial => "/host/header" %>
+    <div class="inner">
+      <p align="center">
+	<a href=<%= @host.os_version.osystem.url%>><img class="logo" src=<%= "/images/os_logo/#{@host.os_version.osystem.logo}" %> alt="logo" /></a>
+      </p>
+
+
+
+      <% if current_user and @host.profil.user == current_user %>
+
+        <%= form_for @host, :url => {:action => :delete, :id => @host.uuid}, :html => {:class => "form"} do |f| %>
+        <div class="group">
+        <%= f.error_messages %>
+        <div class="group navform">
+  	  <%#= f.submit "#{I18n.t(:delete)} ?", :html => {:class => "button"}, :confirm => I18n.t(:delete_confirm) %> 
+
+	  <button class="button" type="submit">
+            <img src="/images/web-app-theme/icons/cross.png" alt="delete" />   <%= I18n.t(:delete) %>
+          </button>
+
+
+        </div>
+        </div>
+      <% end %>
+
+
+      <% if @host.blocked == false %>
+
+        <%= form_for @host, :url => {:action => :block, :id => @host.uuid}, :html => {:class => "form"} do |f| %>
+        <%= f.error_messages %>
+        <div class="group navform">
+  	  <%#= f.submit "#{I18n.t(:block)} ?", :html => {:class => "button"}, :confirm => I18n.t(:block_confirm) %> 
+
+	  <button class="button" type="submit">
+            <img src="/images/web-app-theme/icons/tick.png" alt="block" />   <%= I18n.t(:block) %>
+          </button>
+
+        </div>
+	<% end %>
+
+	
+      <% elsif @host.blocked == true %>
+
+      <%= form_for @host, :url => {:action => :unblock, :id => @host.uuid}, :html => {:class => "form"} do |f| %>
+      <%= f.error_messages %>
+      <div class="group navform">
+	<%#= f.submit "#{I18n.t(:unblock)} ?", :html => {:class => "button"}, :confirm => I18n.t(:unblock_confirm) %> 
+
+	  <button class="button" type="submit">
+            <img src="/images/web-app-theme/icons/tick.png" alt="unblock" />   <%= I18n.t(:unblock) %>
+          </button>
+
+      </div>
+      <% end %>
+
+      <% end %>
+
+	<%= link_to 'Edit', "/host/#{@host.pub_uuid}/edit", :class => 'button'  %>
+
+      <%#= link_to 'Edit', edit_host_path %>
+      <% end %>
+
+
+      <div class="clear"></div>
+
+  
+      <fieldset class="singleRow">
+	<legend class="legendFieldset">&nbsp;OS&nbsp;</legend>
+	<p>
+	  <i><%=h @host.os_version.osystem.name.capitalize %></i>
+	</p>
+
+	<p>
+	  <b>version :</b>
+	  <%=h @host.os_version_number %>
+	</p>
+
+	<p>
+	  <b>description :</b>
+	  <%=h @host.os_version.osystem.description %>
+	</p>
+	
+	<p>
+	  <b>patch level :</b>
+	  <%=h @host.patch_level %>
+	</p>
+	
+	<p>
+	  <b>vendor :</b>
+	  <%=h @host.os_version.osystem.vendor %>
+	</p>
+	
+	<p>
+	  <b>vendor version :</b>
+	  <%=h @host.os_version.vendor_version %>
+	</p>
+	
+	<p>
+	  <b>vendor code name:</b>
+	  <%=h @host.os_version.vendor_code_name %>
+	</p>
+
+	<p>
+	  <b>base :</b>
+	  <%=h @host.os_version.osystem.os_base %>
+	</p>
+
+	<p>
+	  <b>type :</b>
+	  <%=h @host.os_version.osystem.os_type %>
+	</p>
+      </fieldset>
+
+
+
+      <fieldset class="singleRow">
+	<legend class="legendFieldset">&nbsp;CPU&nbsp;</legend>
+	<p>
+	  <i><%=h @host.cpu.vendor %></i>
+	</p>
+
+	<p>
+	  <b>architecture :</b>
+	  <%=h @host.architecture %>
+	</p>
+
+	<p>
+	  <b>model :</b>
+	  <%=h @host.cpu.model %>
+	</p>
+
+	<p>
+	  <b>MHZ :</b>
+	  <%=h @host.cpu.mhz %>
+	</p>
+	
+	<p>
+	  <b>cache size :</b>
+	  <%=h @host.cpu.cache_size %>
+	</p>
+	
+	<p>
+	  <b>number :</b>
+	  <%=h @host.cpu.number %>
+	</p>
+	
+	<p>
+	  <b>total cores :</b>
+	  <%=h @host.cpu.total_cores %>
+	</p>
+	
+	<p>
+	  <b>total sockets :</b>
+	  <%=h @host.cpu.total_sockets %>
+	</p>
+	
+	<p>
+	  <b>cores per socket :</b>
+	  <%=h @host.cpu.cores_per_socket %>
+	</p>
+      </fieldset>
+
+      <fieldset class="singleRow">
+	<legend class="legendFieldset">&nbsp;Network&nbsp;</legend>
+	<p>
+	  <b>primary interface :</b>
+	  <%= h @host.network.primary_interface %>
+	</p>
+	<p>
+	  <b>primary address :</b>
+	  <%= h @host.network.primary_addr %>
+	</p>
+	<p>
+	  <b>hostname :</b>
+	  <%= h @host.network.hostname %>
+	</p>
+	<p>
+	  <b>domain name :</b>
+	  <%= h @host.network.domain_name %>
+	</p>
+	<p>
+	  <b>default gateway :</b>
+	  <%= h @host.network.default_gateway %>
+	</p>
+	<p>
+	  <b>primary DNS :</b>
+	  <%= h @host.network.primary_dns %>
+	</p>
+	<p>
+	  <b>secondary DNS :</b>
+	  <%= h @host.network.secondary_dns %>
+	</p>
+      </fieldset>
+
+
+      <fieldset class="singleRow">
+	<legend class="legendFieldset">&nbsp;RAM&nbsp;</legend>
+	<p>
+	  <i><%=h @host.ram.mem_ram %></i>
+	</p>
+
+	<p>
+	  <b>total :</b>
+	  <%=h @host.ram.mem_total %> bytes
+	</p>
+      </fieldset>
+
+
+
+      <fieldset class="singleRow">
+	<legend class="legendFieldset">&nbsp;Other&nbsp;</legend>
+
+
+
+      <% if current_user and @host.profil.user == current_user %>
+      <p>
+	<b>Private UUID :</b>
+	<%=h @host.uuid %>
+      </p>
+      <% end %>
+
+      <p>
+	<b>Public UUID:</b>
+	<%=h @host.pub_uuid %>
+      </p>
+
+      <p>
+	<b>Created at :</b>
+	<%=h @host.created_at %>
+      </p>
+
+
+      <p>
+	<b>Last update :</b>
+	<%=h @host.updated_at %>
+      </p>
+            
+
+
+      </fieldset>
+
+      <div class="clear"></div>
+
+    </div>
+  </div>
+</div>

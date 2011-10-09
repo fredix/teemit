@@ -1,0 +1,135 @@
+<%  
+# this partial renders a tabnav, you can call it in your views with:
+#   <%= tabnav :statistics % > (just the tabnav) 
+# or, if you want a boxed tabnav:
+#   <% tabnav :statistics do % >
+#     your html here
+#   <% end % >
+# (remove the space between % and >, we don't want to mess up your brand new tabnav :-))
+#
+# you can pass render_tabnav a few options:
+#   :generate_css => true|false #=> generates a default inline css for the tabnav, defaults to false
+#   :html => aHash #=> sets html options for the tabnav's div (es :html => {:class=> 'myCssClass', :id=>'myCssId'}) 
+#     
+render_tabnav :statistics, 
+              :generate_css => true do 
+    
+  # this generates a tab for every controller in your app
+  # you'll probably want to delete this and
+  # add tabs one by one as shown below
+=begin
+  controller_names.each do |name|
+    add_tab do |t|
+      t.named name.camelize
+      t.titled "Go to #{name.camelize}"
+      t.links_to :controller => name
+    end
+  end 
+=end
+         
+  add_tab do |t|
+    t.named I18n.t :all 
+    t.titled I18n.t :all
+    t.links_to :controller => 'report', :action => 'all'
+  end 
+
+
+  add_tab do |t|
+    t.named I18n.t :by_uptime
+    t.titled I18n.t :by_uptime
+    t.links_to :controller => 'report', :action => 'uptimes'
+  end 
+
+
+  add_tab do |t|
+    t.named I18n.t :by_os
+    t.titled I18n.t :by_os
+    t.links_to :controller => 'report', :action => 'os', :id => 'all'
+  end 
+
+
+  add_tab do |t|
+    t.named content_tag(:span, h(params[:id][0..20].upcase), :class => "strong")
+    t.titled h(params[:id][0..20].upcase)
+    t.links_to :controller => 'report', :action => 'os', :id => params[:id]
+  end if controller.action_name == "os" and params[:id] and params[:id] != 'all'
+
+
+
+  add_tab do |t|
+    t.named I18n.t :by_plateform
+    t.titled I18n.t :by_plateform
+    t.links_to :controller => 'report', :action => 'plateform', :id => 'all'
+  end 
+
+
+  add_tab do |t|
+    t.named content_tag(:span, h(params[:id][0..20].upcase), :class => "strong")
+    t.titled h(params[:id][0..20].upcase)
+    t.links_to :controller => 'report', :action => 'plateform', :id => params[:id]
+  end if controller.action_name == "plateform" and params[:id] and params[:id] != 'all'
+
+
+  add_tab do |t|
+    t.named I18n.t :by_country
+    t.titled I18n.t :by_country
+    t.links_to :controller => 'report', :action => 'country', :id => 'all'
+  end 
+
+
+  add_tab do |t|
+    t.named content_tag(:span, h(params[:id][0..20].upcase), :class => "strong")
+    t.titled h(params[:id][0..20].upcase)
+    t.links_to :controller => 'report', :action => 'country', :id => params[:id]
+  end if controller.action_name == "country" and params[:id] and params[:id] != 'all'
+
+
+  add_tab do |t|
+    t.named I18n.t :by_city
+    t.titled I18n.t :by_city
+    t.links_to :controller => 'report', :action => 'city', :id => 'all'
+  end 
+
+
+  add_tab do |t|
+    t.named content_tag(:span, h(params[:id][0..20].upcase), :class => "strong")
+    t.titled h(params[:id][0..20].upcase)
+    t.links_to :controller => 'report', :action => 'city', :id => params[:id]
+  end if controller.action_name == "city" and params[:id] and params[:id] != 'all'
+
+
+
+
+  #  
+  # you can use restful routes with:
+  #
+  #add_tab do |t|
+  #  t.named 'Users'
+  #  t.links_to hash_for_users_path
+  #end
+  #
+  #add_tab do |t|
+  #  t.named 'Customers'
+  #  t.links_to :controller => 'customers'
+  #end
+  #  
+  # # A tab can be initialized with a Hash like this:
+  # 
+  # add_tab :name => 'welcome', :link => {:controller=>'welcome'}
+  #
+  # # You can have a dynamic name or link 
+  # # (this partial is evaluated in the page context, so it sees every helper or instance variable)
+  #  
+  # add_tab do |t|
+  #   t.named "#{current_user} details"
+  #   t.links_to :controller => 'users', :action => 'show', :id => current_user.id
+  # end
+  #
+  # # You can have an image inside 
+  #
+  # add_tab do |t|
+  #   t.named image_tag('test')
+  #   t.links_to :controller => 'users', :action => 'show', :id => current_user.id
+  # end
+end 
+%>

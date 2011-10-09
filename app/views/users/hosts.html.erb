@@ -1,0 +1,42 @@
+<div class="block" id="block-lists">
+  <div class="content">
+    <h2 class="title">
+      <%= I18n.t :user_hosts -%> 
+      <%= avatar_user(@user) %>
+      :
+      <%= @hosts_count %> / <%= @hosts.length %>
+
+    </h2>
+
+    <div class="actions-bar">
+      <div class="pagination">
+	<%= paginate @hosts %>
+      </div>
+    </div>
+
+
+    <div class="inner">
+      <ul class="list">
+	<% @hosts.each do |host| %>
+        <li>
+          <div class="left">
+	    <%= avatar_host(host) %>	  
+          </div>
+          <div class="item">
+            <p><b><%= I18n.t :hostname %>:</b>
+	      <%= host.network.hostname %>
+	    </p>
+            <p><b>Last update :</b>
+	      <%= host.updated_at %>
+	    </p>
+          </div>
+        </li>
+	<% end %>
+
+
+
+      </ul>
+      
+    </div>
+  </div>
+</div>

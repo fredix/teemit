@@ -1,0 +1,49 @@
+<h2>Edit <%= resource_name.to_s.humanize %></h2>
+
+<% form_for resource_name, resource, :url => registration_path(resource_name), :html => { :method => :put } do |f| -%>
+  <%= f.error_messages %>
+
+  <p><%= f.label :email %></p>
+  <p><%= f.text_field :email %></p>
+
+  <p><%= f.label :password %> <i>(leave blank if you don't want to change it)</i></p>
+  <p><%= f.password_field :password %></p>
+
+  <p><%= f.label :password_confirmation %></p>
+  <p><%= f.password_field :password_confirmation %></p>
+
+  <p><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i></p>
+  <p><%= f.password_field :current_password %></p>
+
+
+
+<p><%= f.label :token_authentication_key %><br />
+04
+<%= resource.authentication_token.blank? ? "Token Empty" : resource.authentication_token %></p>
+05
+ 
+06
+<p><%= link_to "Generate Token", token_authentications_path(:user_id => resource.id), :method => :post, :confirm => "Are you sure?"  %>
+07
+<%= link_to "Delete Token", token_authentication_path(resource), :method => :delete, :confirm => "Are you sure?"  %></p>
+08
+ 
+09
+<% if resource.authentication_token %>
+10
+  <p>You can use this url to login<br />
+11
+  <%= link_to "http://localhost:3000#{root_path(:auth_token => resource.authentication_token)}", root_path(:auth_token => resource.authentication_token)  %></p>
+12
+<% end %>
+
+
+
+  <p><%= f.submit "Update" %></p>
+<% end -%>
+
+<h3>Cancel my account</h3>
+
+<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete %>.</p>
+
+<%= render :partial => "shared/devise_links" %>

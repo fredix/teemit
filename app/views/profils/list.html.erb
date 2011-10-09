@@ -1,0 +1,64 @@
+<div class="block" id="block-lists">
+  <div class="content">
+    <h2 class="title"><%= I18n.t(:profils) %></h2>
+
+    <div class="actions-bar">
+      <div class="pagination">
+	<%#= paginate @profils %>
+      </div>
+    </div>
+
+    <div class="inner">
+      <ul class="list">
+
+	<% @profils.each do |profil| %>
+	<li>
+
+          <div class="left">
+	    <%= I18n.t(:nickname) %>
+          </div>
+          <div class="item">
+	    <b><%= profil.nickname %></b>
+	  </div>
+
+          <div class="left">
+	    email
+          </div>
+          <div class="item">
+	    <b><%= profil.email %></b>
+	  </div>
+
+          <div class="left">
+	    <%= I18n.t(:context) %>
+          </div>
+          <div class="item">
+	    <b><%= profil.context %></b>
+	  </div>
+
+
+          <div class="left">
+	    public
+          </div>
+          <div class="item">
+	    <b><%= check_box_tag 'public', nil, profil.public, :disabled => true %></b>
+	  </div>
+
+	  <div class="clear"></div>
+
+	  <% form_tag "/profils/edit/#{profil.id}", :html => {:class => "form"} do -%>
+	    <div class="group navform">
+	      <%= submit_tag "#{I18n.t(:edit)}", :html => {:class =>"button"} %>  
+	    </div>
+	    <% end %>
+	  <% form_tag "/profils/delete/#{profil.id}", :html => {:class => "form"} do -%>
+	    <div class="group navform">
+	      <%#= submit_tag "#{I18n.t(:delete)}", :html => {:class =>"button"} %>  
+	    </div>
+	    <% end %>
+	</li>
+	<% end %>
+      </ul>
+ 
+    </div>
+  </div>
+</div>

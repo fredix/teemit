@@ -1,0 +1,20 @@
+<div class="block" id="block-text">
+<%= render :partial => "/report/menu_stats" %>
+
+<div class="content"> 
+  <h2 class="title"></h2>
+
+  <div class="inner"> 
+      <p class="first">
+	<b><%= @hosts_publics %></b> <%= I18n.t :public_hosts -%> sur
+	<%= @hosts_all %>  <%= I18n.t :registered -%>
+      </p>
+
+      <p>
+	<b><%= @users_publics %></b> <%= I18n.t :public_users -%> sur
+	<%= @users_all %> <%= I18n.t :registered -%>
+      </p>
+  </div>
+</div>
+</div>
+

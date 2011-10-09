@@ -1,0 +1,101 @@
+<%  
+# this partial renders a tabnav, you can call it in your views with:
+#   <%= tabnav :host % > (just the tabnav) 
+# or, if you want a boxed tabnav:
+#   <% tabnav :host do % >
+#     your html here
+#   <% end % >
+# (remove the space between % and >, we don't want to mess up your brand new tabnav :-))
+#
+# you can pass render_tabnav a few options:
+#   :generate_css => true|false #=> generates a default inline css for the tabnav, defaults to false
+#   :html => aHash #=> sets html options for the tabnav's div (es :html => {:class=> 'myCssClass', :id=>'myCssId'}) 
+#     
+render_tabnav :host, 
+              :generate_css => false,
+              :html => {:class=> 'secondary-navigation'} do
+
+  # this generates a tab for every controller in your app
+  # you'll probably want to delete this and
+  # add tabs one by one as shown below
+=begin
+  controller_names.each do |name|
+    add_tab do |t|
+      t.named name.camelize
+      t.titled "Go to #{name.camelize}"
+      t.links_to :controller => name
+    end
+  end 
+=end
+        
+  add_tab do |t|
+    t.named 'Description'
+    t.titled 'Description'
+    t.links_to :controller => :host, :action => :show, :id => @host.pub_uuid
+  end 
+
+  add_tab do |t|
+    t.named 'uptime'
+    t.titled 'uptime'
+    t.links_to :controller => :report, :action => :uptime, :id => @host.pub_uuid
+  end 
+
+  add_tab do |t|
+    t.named I18n.t(:load_average)
+    t.titled I18n.t(:load_average)
+    t.links_to :controller => :report, :action => :load, :id => @host.pub_uuid
+  end 
+
+  add_tab do |t|
+    t.named I18n.t(:memory)
+    t.titled I18n.t(:memory)
+    t.links_to :controller => :report, :action => :memory, :id => @host.pub_uuid
+  end 
+
+  add_tab do |t|
+    t.named I18n.t(:network)
+    t.titled I18n.t(:network)
+    t.links_to :controller => :report, :action => :network, :id => @host.pub_uuid
+  end 
+
+
+  add_tab do |t|
+    t.named I18n.t(:cpu)
+    t.titled I18n.t(:cpu)
+    t.links_to :controller => :report, :action => :cpu, :id => @host.pub_uuid
+  end 
+
+
+  #  
+  # you can use restful routes with:
+  #
+  #add_tab do |t|
+  #  t.named 'Users'
+  #  t.links_to hash_for_users_path
+  #end
+  #
+  #add_tab do |t|
+  #  t.named 'Customers'
+  #  t.links_to :controller => 'customers'
+  #end
+  #  
+  # # A tab can be initialized with a Hash like this:
+  # 
+  # add_tab :name => 'welcome', :link => {:controller=>'welcome'}
+  #
+  # # You can have a dynamic name or link 
+  # # (this partial is evaluated in the page context, so it sees every helper or instance variable)
+  #  
+  # add_tab do |t|
+  #   t.named "#{current_user} details"
+  #   t.links_to :controller => 'users', :action => 'show', :id => current_user.id
+  # end
+  #
+  # # You can have an image inside 
+  #
+  # add_tab do |t|
+  #   t.named image_tag('test')
+  #   t.links_to :controller => 'users', :action => 'show', :id => current_user.id
+  # end
+end 
+%>

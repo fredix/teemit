@@ -1,0 +1,50 @@
+<div class="block" id="block-lists">
+  <div class="content">
+    <h2 class="title">   
+      <img class="avatar" src="/images/devices/computer.png" alt="avatar" />
+      <img class="avatar" src="/images/devices/notebook.png" alt="avatar" />
+      <img class="avatar" src="/images/devices/computer-apple-ipad.png" alt="avatar" />
+      <img class="avatar" src="/images/devices/phone-google-nexus-one.png" alt="avatar" />
+      <img class="avatar" src="/images/devices/server.png" alt="avatar" />
+      <img class="avatar" src="/images/devices/GITS_laughingman.png" />
+
+      <br />      
+	<%= I18n.t :hosts -%> publics  :  <%= @hosts_count %>
+      </h2>
+    <hr />
+    <div class="actions-bar">
+      <div class="pagination">
+	<%= paginate @hosts if @host%>
+      </div>
+    </div>
+
+
+    <div class="inner">
+      <ul class="list">
+	<% @hosts.each do |host| %>
+        <li>
+          <div class="left">
+            <%= avatar_host(host) %>
+	    </a>
+            <p><b>
+	      #<%= host.counter %></b>
+	    </p>
+          </div>
+          <div class="item">
+            <p><b><%= I18n.t :owner %>:</b>
+	      <%= avatar_user(host.user) %>
+	    </p>
+            <p><b><%= I18n.t :hostname %>:</b>
+	      <%= host.network.hostname %>
+	    </p>
+            <p><b><%= I18n.t :uptime_last %> :</b>
+	    <%= host.stats_uptime.time.round / 3600 / 24 if  host.stats_uptime %></b> <%= I18n.t(:days) %>
+	    </p>
+          </div>
+        </li>
+	<% end %>
+
+      </ul>     
+    </div>
+  </div>
+</div>

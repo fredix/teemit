@@ -1,0 +1,51 @@
+<div class="block" id="block-lists">
+  <div class="content">
+    <h2 class="title">
+      <img class="avatar" src="/images/avatars_users/user.png" alt="avatar" />
+      <img class="avatar" src="/images/devices/male.png" alt="avatar" />
+
+      <br />      
+      <%= I18n.t :users -%> : <%= @users_count %>
+    </h2>
+    <hr />
+    <div class="actions-bar">
+      <div class="pagination">
+	<%= paginate @users if !@users.empty? %>
+
+	<%#= @users.number %>
+	<%#= link_to("Prev", user_path(:page => @users.prev.number)) if @users.prev? %>
+	<%#= link_to("Next", user_path(:page => @users.next.number)) if @users.next? %>
+	<br />
+      </div>
+    </div>
+
+
+    <div class="inner">
+      <ul class="list">
+	<% @users.each do |user| %>
+        <li>
+          <div class="left">
+            <a href=<%= url_for (user.login) %>><%= avatar_user(user) %></a>
+            <p><b>
+	      #<%= user.counter %></b>
+	    </p>
+          </div>
+          <div class="item">
+            <p><b><%= I18n.t :login %>:</b>
+	      <%= user.login %>
+	    </p>
+            <p><b>Hosts number :</b>
+	      <%=h user.hosts.count %>
+	    </p>
+	    <p><b><%= link_to I18n.t(:show_hosts), "/#{user.login}/hosts" %></b>
+	    </p>
+
+          </div>
+        </li>
+	<% end %>
+
+      </ul>
+      
+    </div>
+  </div>
+</div>

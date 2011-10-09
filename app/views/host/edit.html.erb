@@ -1,0 +1,53 @@
+<div class="block" id="block-forms">
+  <div class="content">
+    <h2 class="title"><%= I18n.t(:host) %></h2>
+    <div class="inner">
+
+      <% form_for @host, :url => host_path, :html => {:class => "form", :multipart => true} do |f| %>
+      <div class="group">
+      <%= f.error_messages %>
+      <%#= render :partial => "form", :object => f %>
+
+
+      <%= image_tag(@host.avatar_url) if @host.avatar? %>
+
+      <div class="group wat-cf">
+      <div class="left">
+	<%= label(:avatar, :title, "avatar", :class => "label right") %>
+      </div>
+      <div class="right">
+	<%= f.file_field :avatar %>
+        <%= f.hidden_field :avatar_cache %>
+      </div>
+      </div>
+      <div class="clear"></div>
+      </div>
+
+
+      <div class="group wat-cf">
+	<div class="left">
+	  <%#= form.label :country  %>
+	  <%= label(:description, :title, :description, :class => "label right") %>
+	</div>
+	<div class="right">
+	  <%= f.text_area :description, :class => "text_field" %>
+	</div>
+	<div class="clear"></div>
+      </div>
+
+
+
+      <div class="clear"></div>
+
+
+
+
+
+      <div class="group navform">
+	<%= f.submit "#{I18n.t(:update)} &rarr;", :html => {:class => "button"} %>  <%= I18n.t(:or) %> <%= link_to I18n.t(:cancel), host_path %>
+      </div>
+      <% end %>
+ 
+    </div>
+  </div>
+</div>

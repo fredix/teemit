@@ -1,0 +1,27 @@
+# === SMTP server at using TLS (GMail)
+#
+# This requires some additional configuration.  See the article at:
+# http://redmineblog.com/articles/setup-redmine-to-send-email-using-gmail/
+#
+production:
+   delivery_method: :smtp
+   smtp_settings:
+     tls: true
+     address: "smtp.gmail.com"
+     port: 587
+     domain: "yourdomain.tld" # 'your.domain.com' for GoogleApps
+     authentication: :plain
+     user_name: "noreply@yourdomain.tld"
+     password: "xxxxxx"
+development:
+   delivery_method: :smtp
+   smtp_settings:
+     tls: true
+     address: "smtp.gmail.com"
+     port: 587
+     domain: "yourdomain.tld" # 'your.domain.com' for GoogleApps
+     authentication: :plain
+     user_name: "noreply@yourdomain.tld"
+     password: "xxxxxx"
+test:
+  delivery_method: :test

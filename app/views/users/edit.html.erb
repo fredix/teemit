@@ -1,0 +1,17 @@
+<div class="block" id="block-forms">
+  <div class="content">
+    <h2 class="title"><%= I18n.t(:account) %></h2>
+    <div class="inner">
+
+      <%= form_for @user, :url => account_path, :html => {:class => "form", :multipart => true} do |f| %>
+      <div class="group">
+      <%= f.error_messages %>
+      <%= render :partial => "form", :object => f %>
+      <div class="group navform">
+	<%= f.submit "#{I18n.t(:update)} &rarr;", :html => {:class => "button"} %>  <%= I18n.t(:or) %> <%= link_to I18n.t(:cancel), account_path %>
+      </div>
+      <% end %>
+ 
+    </div>
+  </div>
+</div>

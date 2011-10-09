@@ -1,0 +1,35 @@
+<div class="secondary-navigation"> 
+  <%#= tabnav :statistics %>
+  <ul class="wat-cf"> 
+    <li<%= " class='active'" if current_page?(:controller => :report, :action => :all) %>><%= link_to I18n.t(:all), :controller => :report, :action => :all %></li> 
+    <li<%= " class='active'" if current_page?(:controller => :report, :action => :uptimes) %>><%= link_to "uptime", :controller => :report, :action => :uptimes %></li> 
+    <li<%= " class='active'" if current_page?(:controller => :report, :action => :os, :id => :all) %>><%= link_to I18n.t(:by_os), :controller => :report, :action => :os, :id => 'all' %></li> 
+    
+    <% if controller.action_name == "os" and params[:id] and params[:id] != 'all' %>
+    <li class="active"><%= link_to "<span class='strong'>#{params[:id][0..20].upcase}</span>".html_safe, :controller => :report, :action => :os, :id => params[:id] %></li> 
+    <% end %>
+    
+    <li<%= " class='active'" if current_page?(:controller => :report, :action => :plateform, :id => :all) %>><%= link_to I18n.t(:by_plateform), :controller => :report, :action => :plateform, :id => 'all' %></li> 
+    
+    <% if controller.action_name == "plateform" and params[:id] and params[:id] != 'all' %>
+    <li class="active"><%= link_to "<span class='strong'>#{params[:id][0..20].upcase}</span>".html_safe, :controller => :report, :action => :plateform, :id => params[:id] %></li> 
+    <% end %>
+    
+    
+    <li<%= " class='active'" if current_page?(:controller => :report, :action => :country, :id => 'all') %>><%= link_to  I18n.t(:country), :controller => :report, :action => :country, :id => 'all' %></li> 
+    
+    <% if controller.action_name == "country" and params[:id] and params[:id] != 'all' %>
+    <li class="active"><%= link_to "<span class='strong'>#{params[:id][0..20].upcase}</span>".html_safe, :controller => :report, :action => :country, :id => params[:id] %></li> 
+    <% end %>
+    
+            
+    <li<%= " class='active'" if current_page?(:controller => :report, :action => :city, :id => 'all') %>><%= link_to  I18n.t(:city), :controller => :report, :action => :city, :id => 'all' %></li> 
+    
+    <% if controller.action_name == "city" and params[:id] and params[:id] != 'all' %>
+    <li class="active"><%= link_to "<span class='strong'>#{params[:id][0..20].upcase}</span>".html_safe, :controller => :report, :action => :city, :id => params[:id] %></li> 
+    <% end %>
+    
+  </ul> 
+</div> 
+
+

@@ -1,0 +1,26 @@
+TeemIt is the nodecast web front
+
+INSTALL :
+
+install rvm : http://rvm.beginrescueend.com/
+rvm install 1.9.2
+rvm use 1.9.2
+rvm gemset create nodecast
+rvm use 1.9.2@nodecast
+bundle install
+cp config/mongoid.example.yml config/mongoid.yml
+edit config/mongoid.yml
+cp config/email.example.yml config/email.yml
+edit config/email.yml
+run mongodb
+
+export some environment variables :
+export NODECAST_VERSION=0.3.0
+export RECAPTCHA_PUBLIC_KEY="YOURKEY"
+export RECAPTCHA_PRIVATE_KEY="YOURPRIVATEKEY"
+export GOOGLE_ANALYTICS="YOURCODE"
+
+
+rake db:seed RAILS_ENV=production
+edit config/thin.yml
+thin -C config/thin.yml start

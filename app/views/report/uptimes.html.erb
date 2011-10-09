@@ -1,0 +1,43 @@
+<div class="block" id="block-list">
+
+<%= render :partial => "/report/menu_stats" %>
+
+<div class="content"> 
+  <h2 class="title">
+    <% if @hosts_count_public_os == 0 %>
+    <%= I18n.t :nohost -%>
+    <% else %>
+    <%= @hosts_count_public_os %> <%= I18n.t :hosts -%>
+    <% end %>
+</h2> 
+
+  <div class="actions-bar">
+    <div class="pagination">
+      <%= paginate @hosts %>
+    </div>
+  </div>
+
+  <div class="inner"> 
+    <ul class="list">
+      <% @hosts.each do |host| %>
+      <li>
+        <div class="left">
+	    <%= avatar_host(host) %>
+        </div>
+        <div class="item">
+          <p><b><%= I18n.t :owner %>:</b>    
+	    <%= avatar_user(host.user) %>
+	  </p>
+          <p><b><%= I18n.t :hostname %>:</b>
+	    <%= host.network.hostname %>
+	  </p>
+          <p><b><%= I18n.t :uptime_last %> :</b>
+	    <%= host.stats_uptime.time.round / 3600 / 24 if host.stats_uptime %></b> <%= I18n.t(:days) %>
+          </p>
+        </div>
+        </li>
+	<% end %>
+    </ul>
+  </div>
+</div>
+</div> 

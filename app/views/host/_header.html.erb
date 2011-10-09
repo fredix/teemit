@@ -1,0 +1,46 @@
+<div class="block" id="block-text">
+  <%#= tabnav :report %>
+  <div class="secondary-navigation"> 
+    <ul class="wat-cf"> 
+
+      <% if @host.public -%>
+      <li class="active"><%= link_to "description", :controller => :host, :action => :show, :id => @host.pub_uuid %></li> 
+      <li><%= link_to "uptime", :controller => :report, :action => :uptime, :id => @host.pub_uuid %></li> 
+      <li><%= link_to I18n.t(:load_average), :controller => :report, :action => :load, :id => @host.pub_uuid %></li> 
+      <li><%= link_to I18n.t(:memory), :controller => :report, :action => :memory, :id => @host.pub_uuid %></li> 
+      <li><%= link_to  I18n.t(:network), :controller => :report, :action => :network, :id => @host.pub_uuid %></li> 
+      <li><%= link_to  I18n.t(:cpu), :controller => :report, :action => :cpu, :id => @host.pub_uuid %></li> 
+      <li><%= link_to  "processus", :controller => :report, :action => :processus, :id => @host.pub_uuid %></li> 
+      <% else -%>
+      <li class="active"><%= link_to "description", :controller => :host, :action => :show, :uuid => @host.uuid %></li> 
+      <li><%= link_to "uptime", :controller => :report, :action => :uptime, :uuid => @host.uuid %></li> 
+      <li><%= link_to I18n.t(:load_average), :controller => :report, :action => :load, :uuid => @host.uuid %></li> 
+      <li><%= link_to I18n.t(:memory), :controller => :report, :action => :memory, :uuid => @host.uuid %></li> 
+      <li><%= link_to  I18n.t(:network), :controller => :report, :action => :network, :uuid => @host.uuid %></li> 
+      <li><%= link_to  I18n.t(:cpu), :controller => :report, :action => :cpu, :uuid => @host.uuid %></li> 
+      <li><%= link_to  "processus", :controller => :report, :action => :processus, :uuid => @host.uuid %></li> 
+      <% end -%>
+
+    <div align="right" style="font-size:2em;color:white;"><b>#<%= @host.counter %></b></div>
+    </ul> 
+  </div> 
+
+  <div class="content">
+
+    <h2 class="title"><%= I18n.t(:host) %> : <b>
+	<%= avatar_host(@host) %>
+	@ 
+	<%= avatar_user(@puser) %>
+      </b>
+      <%= h @host.description %>
+    </h2>    
+
+<!-- 
+  <div class="widget"> 
+    <div align="right" style="font-size:2em;color:white;"><b>#0</b></div>
+  </div> 
+-->
+
+
+
+<hr />

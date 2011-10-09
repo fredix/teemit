@@ -1,0 +1,132 @@
+  <%= render :partial => "/report/header" %>
+   <div class="inner">
+      <img class="avatar" src="/images/devices/ethernet.png" alt="avatar" align="right"/>
+
+      <h3><%= I18n.t(:sample_number) %> : <b><%= @host.stats_network.counter %></b></h3>
+      <h3><%= I18n.t(:first_sample_date) %> : <b><%= @host.stats_network.created_at %></b></h3>
+
+      <fieldset class="singleRow">
+	<legend class="legendFieldset"><%= I18n.t(:last_statement).capitalize %></legend>
+	<h4>rx : <b><%= @host.stats_network.rx_rate.round(3) %></b> Kb</h4>
+	<h4>tx : <b><%= @host.stats_network.tx_rate.round(3) %></b> Kb</h4>
+      </fieldset> 
+
+      <fieldset class="singleRow">
+	<legend class="legendFieldset"><%= I18n.t(:average).capitalize %></legend>
+	<h4>rx : <b><%= @host.stats_network.average_rx.round(3) %></b> Kb</h4>
+	<h4>tx : <b><%= @host.stats_network.average_tx.round(3) %></b> Kb</h4>
+      </fieldset> 
+
+      <fieldset class="singleRow">
+	<legend class="legendFieldset"><%= I18n.t(:highest).capitalize %></legend>
+	<h4>rx : <b><%= @host.stats_network.max_rx.round(3) %></b> Kb</h4>
+	<h4>tx : <b><%= @host.stats_network.max_tx.round(3) %></b> Kb</h4>
+      </fieldset> 
+
+      <div class="clear"></div>
+
+
+      <h4>Graph period : three days ago before last stats (<b><%= @host.stats_network.updated_at %></b>)</h4>
+
+      <h4>Kb / seconde</h4>
+
+      <% cache("report/network/#{@host.uuid}") do %>
+      <div id="placeholder" style="width:600px;height:300px"></div>
+      <div id="overview" style="margin-left:50px;margin-top:20px;width:400px;height:50px"></div> 
+
+      <script id="source" language="javascript" type="text/javascript">
+	$(function () {
+	var data = [
+	{
+	label: "rx rate (download)",
+	data: <%= @rx_rate.to_json -%>
+	},
+	{
+	label: "tx rate (upload)",
+	data: <%= @tx_rate.to_json -%>
+	}];
+
+	// first correct the timestamps - they are recorded as the daily
+	// midnights in UTC+0100, but Flot always displays dates in UTC
+	// so we have to add one hour to hit the midnights in the plot
+	// for (var i = 0; i < d.length; ++i) d[i][0] += 60 * 60 * 1000;
+			    
+       // helper for returning the weekends in a period
+       function weekendAreas(axes) {
+           var markings = [];
+	    var d = new Date(axes.xaxis.min);
+	    // go to the first Saturday
+	    d.setUTCDate(d.getUTCDate() - ((d.getUTCDay() + 1) % 7))
+	    d.setUTCSeconds(0);
+	    d.setUTCMinutes(0);
+	    d.setUTCHours(0);
+	    var i = d.getTime();
+	    do {
+		    // when we don't set yaxis, the rectangle automatically
+		    // extends to infinity upwards and downwards
+		    markings.push({ xaxis: { from: i, to: i + 2 * 24 * 60 * 60 * 1000 } });
+		    i += 7 * 24 * 60 * 60 * 1000;
+	    } while (i < axes.xaxis.max);
+				 
+	 return markings;
+	 }
+					 
+	 var options = {
+		 series: {
+			 lines: { show: true },
+			  points: { show: false }
+			 },
+		 legend: { noColumns: 3 },
+			 xaxis: { mode: "time" },
+			 selection: { mode: "xy" },
+			 grid: { markings: weekendAreas }
+		 };
+
+	 var options_zoom = {
+		 series: {
+			 lines: { show: true },
+			  points: { show: true }
+			 },
+		 legend: { noColumns: 3 },
+			 xaxis: { mode: "time" },
+			 selection: { mode: "xy" },
+			 grid: { markings: weekendAreas }
+		 };
+
+					 
+	 var plot = $.plot($("#placeholder"), data, options);
+				 
+	 var overview = $.plot($("#overview"), data, {
+		 series: {
+			 lines: { show: true, lineWidth: 1 },
+			 shadowSize: 0
+		 },
+			 legend: { show: false },
+			 xaxis: { mode: "time" },
+			 yaxis: { ticks: [], min: 0, autoscaleMargin: 0.1 },
+			 selection: { mode: "xy" }
+		 });
+					 
+	 // now connect the two
+				 
+	 $("#placeholder").bind("plotselected", function (event, ranges) {
+		 // do the zooming
+		 plot = $.plot($("#placeholder"), data,
+		 $.extend(true, {}, options_zoom, {
+			 xaxis: { min: ranges.xaxis.from, max: ranges.xaxis.to },
+                         yaxis: { min: ranges.yaxis.from, max: ranges.yaxis.to }
+		 }));
+					 
+		 // don't fire event on the overview to prevent eternal loop
+			 overview.setSelection(ranges, true);
+		 });
+					 
+	 $("#overview").bind("plotselected", function (event, ranges) {
+			 plot.setSelection(ranges);
+			 });
+	 });
+ </script>
+<% end %>
+    </div>
+  </div>
+</div>

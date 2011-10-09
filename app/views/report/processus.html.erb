@@ -1,0 +1,104 @@
+  <%= render :partial => "/report/header" %>
+    <div class="inner">
+      <img class="avatar" src="/images/devices/serviceconf.png" alt="avatar" align="right"/>
+
+      <h3><%= I18n.t(:sample_number) %> : <b><%= @host.stats_process.counter %></b></h3>
+      <h3><%= I18n.t(:process_number) %> : <b><%= @host.stats_process.process_number %></b></h3>
+      <h3><%= I18n.t(:first_sample_date) %> : <b><%= @host.stats_process.created_at %></b></h3>
+      <h3><%= I18n.t(:sample_date) %> : <b><%= @host.stats_process.updated_at %></b></h3>
+
+      <div class="clear"></div>
+
+<p id="overviewLegend" style="margin-left: 10px;"><table style="font-size: smaller; color: rgb(84, 84, 84);"><tbody><tr><td class="legendColorBox"><div style="border: 1px solid rgb(204, 204, 204); padding: 1px;"><div style="width: 4px; height: 0pt; border: 5px solid rgb(237, 194, 64); overflow: hidden;"></div></div></td><td class="legendLabel"><b>state</b></td><td class="legendColorBox"><div style="border: 1px solid rgb(204, 204, 204); padding: 1px;"><div style="width: 4px; height: 0pt; border: 5px solid rgb(203, 75, 75); overflow: hidden;"></div></div></td><td class="legendLabel"><b>mem</b></td><td class="legendColorBox"><div style="border: 1px solid rgb(204, 204, 204); padding: 1px;"><div style="width: 4px; height: 0pt; border: 5px solid rgb(77, 167, 77); overflow: hidden;"></div></div></td><td class="legendLabel"><b>time</b></td></tr></tbody></table></p> 
+
+      <% cache("report/processus/#{@host.uuid}") do %>
+      <table class="table">
+	<tr>
+	  <th class="first">PID</th>
+	  <th style="color:#edc240">name</th>
+	  <th style="color:#edc240">state</th>
+	  <th style="color:#edc240">ppid</th>
+	  <th style="color:#edc240">priority</th>
+	  <th style="color:#edc240">nice</th>
+	  <th style="color:#edc240">processor</th>
+	  <th style="color:#edc240">threads</th>
+
+	  <th style="color:#cb4b4b">size (Mio)</th>
+	  <th style="color:#cb4b4b">resident (Mio)</th>
+	  <th style="color:#cb4b4b">share (Mio)</th>
+	  <th style="color:#cb4b4b">minor defaults</th>
+	  <th style="color:#cb4b4b">major defaults</th>
+	  <th style="color:#cb4b4b">page faults</th>
+
+	  <th style="color:#4da74d">start time</th>
+	  <th style="color:#4da74d">user</th>
+	  <th style="color:#4da74d">sys</th>
+	  <th class="last" style="color:#4da74d">total</th>
+	  
+	  <% if @last_stat %>
+	  <% @last_stat.processus.each do |process| %>
+	<tr class="<%= cycle('odd', 'even') %>">
+	  <td>
+	    <%= process.pid %>
+	  </td>
+	  <td>
+	    <%= process.state_name %>
+	  </td>
+	  <td>
+	    <%= process.state_state %>
+	  </td>
+	  <td>
+	    <%= process.state_ppid %>
+	  </td>
+	  <td>
+	    <%= process.state_priority %>
+	  </td>
+	  <td>
+	    <%= process.state_nice %>
+	  </td>
+	  <td>
+	    <%= process.state_processor %>
+	  </td>
+	  <td>
+	    <%= process.state_threads %>
+	  </td>
+	  <td>
+	    <%= process.mem_size.to_i  / 1048576 %>
+	  </td>
+	  <td>
+	    <%= process.mem_resident.to_i / 1048576 %>
+	  </td>
+	  <td>
+	    <%= process.mem_share.to_i  / 1048576 %>
+	  </td>
+	  <td>
+	    <%= process.mem_minor_faults %>
+	  </td>
+	  <td>
+	    <%= process.mem_major_faults %>
+	  </td>
+	  <td>
+	    <%= process.mem_page_faults %>
+	  </td>
+	  <td>
+	    <%= Time.at(process.time_start_time.to_i / 1000) %>
+	  </td>
+	  <td>
+	    <%= process.time_user %>
+	  </td>
+	  <td>
+	    <%= process.time_sys %>
+	  </td>
+	  <td>
+	    <%= process.time_total %>
+	  </td>
+	</tr>
+	<% end %>
+	<% end %>
+	
+      </table>
+      <% end %>
+
+    </div>
+  </div>
+</div>

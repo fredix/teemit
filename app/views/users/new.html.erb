@@ -1,0 +1,21 @@
+<div id="box">
+  <div class="block" id="block-signup">
+    <h2><%= I18n.t(:register) %></h2>
+    <div class="content">
+
+      <% form_for @user, :url => account_path, :html => {:class => "form"} do |f| %>
+      <%= f.error_messages %>
+      <%= render :partial => "form", :object => f %>
+
+      <div class="group navform wat-cf">
+	  <%#= f.submit I18n.t(:register) %>
+	  <button class="button" type="submit">
+            <img src="/images/web-app-theme/tick.png" alt="Register" /> <%= I18n.t(:register) %>
+          </button>
+	  <%#= oauth_register_button :value => "Register with Twitter" %>
+      </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>

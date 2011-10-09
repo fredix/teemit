@@ -1,0 +1,39 @@
+<div class="group wat-cf">
+
+<div class="left">
+<%= label(:nickname, :title, I18n.t(:nickname), :class => "label right") %>
+</div>
+<div class="right">
+<%= text_field_tag 'profil[nickname]', @profil.try(:nickname), :class => "text_field" %>
+</div>
+<div class="clear"></div>
+</div>
+<div class="group wat-cf">
+  <div class="left">
+  <%= label(:email, :title, "email", :class => "label right") %>
+  </div>
+  <div class="right">
+  <%= text_field_tag 'profil[email]', @profil.try(:email), :class => "text_field" %>
+  </div>
+  <div class="clear"></div>
+</div>
+
+<div class="group wat-cf">
+  <div class="left">
+  <%= label(:context, :title, I18n.t(:context), :class => "label right") %>
+  </div>
+  <div class="right">
+  <%= text_field_tag 'profil[context]', @profil.try(:context), :class => "text_field" %>
+  </div>
+  <div class="clear"></div>
+</div>
+
+<div class="group wat-cf">
+  <div class="left">
+  <%= label(:public, :title, "public", :class => "label right") %>
+  </div>
+  <div class="right">
+  <%= check_box_tag 'profil[public]', nil, checked = @profil.try(:public), :class => "checkbox" %>
+  </div>
+  <div class="clear"></div>
+</div>

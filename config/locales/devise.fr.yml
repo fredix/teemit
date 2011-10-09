@@ -1,0 +1,35 @@
+fr:
+  devise:
+    sessions:
+      link: 'Connexion'
+      signed_in: 'Connexion réussie.'
+      signed_out: 'Déconnexion réussie.'
+      unauthenticated: 'Vous devez vous connecter ou vous inscrire avant de continuer.'
+      unconfirmed: 'Vous devez confirmer votre compte avant de continuer.'
+      locked: 'Votre compte est bloqué.'
+      invalid: 'Email ou mot de passe invalide.'
+      invalid_token: "Jeton d'authentification invalide."
+      timeout: 'Votre session a expirée, reconnectez-vous pour continuer.'
+      inactive: "Votre compte n'a pas été activé."
+    passwords:
+      link: 'Mot de passe oublié ?'
+      send_instructions: 'Vous allez recevoir dans quelques minutes un email avec des instructions vous permettant de modifier votre mot de passe.'
+      updated: 'Votre mot de passe a été modifié. Vous etes maintenant connecté.'
+    confirmations:
+      link: "Vous n'avez pas recu les instructions de confirmation ?"
+      send_instructions: 'Vous allez recevoir dans quelques minutes un email avec les instructions de confirmation de votre compte.'
+      confirmed: 'Votre inscription a été confirmée. Vous etes maintenant connecté.'
+    registrations:
+      link: 'Inscription'
+      signed_up: 'Inscription réussie.'
+      updated: 'Mise à jour de votre compte réussie.'
+      destroyed: 'Bye! Votre compte a bien été suprimé. Nous espérons vous revoir bientot.'
+    unlocks:
+      link: "Vous n'avez pas recu les instructions de déblocage ?"
+      send_instructions: Vous allez recevoir dans quelques minutes un email avec les instructions de déblocage de votre compte.'
+      unlocked: 'Votre compte a été débloqué. Vous etes maintenant connecté.'
+    mailer:
+      confirmation_instructions: 'Instructions de confirmation'
+      reset_password_instructions: 'Instruction de remise à zéro du mot de passe'
+      unlock_instructions: 'Instructions de déblocage'
+

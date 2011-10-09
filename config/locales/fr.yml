@@ -1,0 +1,291 @@
+# French translations for Ruby on Rails
+# by Christian Lescuyer (christian@flyingcoders.com)
+# contributors:
+#  - Sebastien Grosjean - ZenCocoon.com
+#  - Bruno Michel - http://github.com/nono
+#  - Tsutomu Kuroda - http://github.com/kuroda (t-kuroda@oiax.jp)
+
+fr:
+  date:
+    formats:
+      default: "%d/%m/%Y"
+      short: "%e %b"
+      long: "%e %B %Y"
+    day_names: [dimanche, lundi, mardi, mercredi, jeudi, vendredi, samedi]
+    abbr_day_names: [dim, lun, mar, mer, jeu, ven, sam]
+    month_names: [~, janvier, février, mars, avril, mai, juin, juillet, août, septembre, octobre, novembre, décembre]
+    abbr_month_names: [~, jan., fév., mar., avr., mai, juin, juil., août, sept., oct., nov., déc.]
+
+  time:
+    formats:
+      default: "%d %B %Y %H:%M:%S"
+      short: "%d %b %H:%M"
+      long: "%A %d %B %Y %H:%M"
+    am: 'am'
+    pm: 'pm'
+
+  datetime:
+    distance_in_words:
+      half_a_minute: "une demi-minute"
+      less_than_x_seconds:
+        zero:  "moins d'une seconde"
+        one:   "moins d'une seconde"
+        other: "moins de %{count} secondes"
+      x_seconds:
+        one:   "1 seconde"
+        other: "%{count} secondes"
+      less_than_x_minutes:
+        zero:  "moins d'une minute"
+        one:   "moins d'une minute"
+        other: "moins de %{count} minutes"
+      x_minutes:
+        one:   "1 minute"
+        other: "%{count} minutes"
+      about_x_hours:
+        one:   "environ une heure"
+        other: "environ %{count} heures"
+      x_days:
+        one:   "1 jour"
+        other: "%{count} jours"
+      about_x_months:
+        one:   "environ un mois"
+        other: "environ %{count} mois"
+      x_months:
+        one:   "1 mois"
+        other: "%{count} mois"
+      about_x_years:
+        one:   "environ un an"
+        other: "environ %{count} ans"
+      over_x_years:
+        one:   "plus d'un an"
+        other: "plus de %{count} ans"
+      almost_x_years:
+        one:   "presqu'un an"
+        other: "presque %{count} ans"
+    prompts:
+      year:   "Année"
+      month:  "Mois"
+      day:    "Jour"
+      hour:   "Heure"
+      minute: "Minute"
+      second: "Seconde"
+
+  number:
+    format:
+      separator: ","
+      delimiter: " "
+      precision: 3
+      significant: false
+      strip_insignificant_zeros: false
+    currency:
+      format:
+        format: "%n %u"
+        unit: "€"
+        separator: ","
+        delimiter: " "
+        precision: 2
+        significant: false
+        strip_insignificant_zeros: false
+    percentage:
+      format:
+        delimiter: ""
+    precision:
+      format:
+        delimiter: ""
+    human:
+      format:
+        delimiter: ""
+        precision: 2
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one:   "octet"
+            other: "octets"
+          kb: "ko"
+          mb: "Mo"
+          gb: "Go"
+          tb: "To"
+      decimal_units:
+        format: "%n %u"
+        units:
+          unit: ""
+          thousand: "millier"
+          million: "million"
+          billion: "milliard"
+          trillion: "billion"
+          quadrillion: "million de milliards"
+
+  support:
+    array:
+      words_connector: ", "
+      two_words_connector: " et "
+      last_word_connector: " et "
+    select:
+      prompt: "Veuillez sélectionner"
+
+  helpers:
+    select:
+      prompt: "Veuillez sélectionner"
+    submit:
+      create: "Créer un %{model}"
+      update: "Modifier ce %{model}"
+      submit: "Enregistrer ce %{model}"
+
+  attributes:
+    created_at: "Créé le"
+    updated_at: "Modifié le"
+
+  errors:
+    format: "Le %{attribute} %{message}"
+    messages: &errors_messages
+      inclusion: "n'est pas inclus(e) dans la liste"
+      exclusion: "n'est pas disponible"
+      invalid: "n'est pas valide"
+      confirmation: "ne concorde pas avec la confirmation"
+      accepted: "doit être accepté(e)"
+      empty: "doit être rempli(e)"
+      blank: "doit être rempli(e)"
+      too_long: "est trop long (pas plus de %{count} caractères)"
+      too_short: "est trop court (au moins %{count} caractères)"
+      wrong_length: "ne fait pas la bonne longueur (doit comporter %{count} caractères)"
+      not_a_number: "n'est pas un nombre"
+      not_an_integer: "doit être un nombre entier"
+      greater_than: "doit être supérieur à %{count}"
+      greater_than_or_equal_to: "doit être supérieur ou égal à %{count}"
+      equal_to: "doit être égal à %{count}"
+      less_than: "doit être inférieur à %{count}"
+      less_than_or_equal_to: "doit être inférieur ou égal à %{count}"
+      odd: "doit être impair"
+      even: "doit être pair"
+    template: &errors_template
+      header:
+        one:   "Impossible d'enregistrer ce %{model} : 1 erreur"
+        other: "Impossible d'enregistrer ce %{model} : %{count} erreurs"
+      body: "Veuillez vérifier les champs suivants : "
+
+  activerecord:
+    errors:
+      messages:
+        taken: "n'est pas disponible"
+        record_invalid: "La validation a échoué : %{errors}"
+        <<: *errors_messages
+      template:
+        <<: *errors_template
+      full_messages:
+        format: "%{attribute} %{message}"
+
+  home: "accueil"
+  overview: "présentation"
+  cgu: "Conditions Générales"
+  welcome: "Bienvenue sur Nodecast"
+  firstname: "prénom"
+  lastname: "nom"
+  label: "label"
+  gender: "sexe"
+  birthday: "date de naissance"
+  address: "adresse"
+  postcode: "code postal"
+  city: "ville"
+  state: "état"
+  mobile_phone: "téléphone mobile"
+  country: "pays"
+  login: "identifiant"
+  logout: 'Se déconnecter'
+  password: "mot de passe"
+  login_in: "se connecter"
+  remember_me: "se souvenir de moi"
+  add:  "ajouter"
+  add_input_channel: "créer un nouveau canal d'entrée"
+  add_output_channel: "créer un nouveau canal de sortie"
+  input_channel: "Canal d'entrée"
+  output_channel: "Canal de sortie"
+  confirm_password: "confirmez le mot de passe"
+  privacy: "Respect de la vie privée"
+  conduct: "Règles de bonne conduite"
+  network: "réseaux"
+  account: "Mon compte"
+  profils: "profiles"
+  my_channels: "Mes canaux"
+  channel: "canal"
+  modify: "modifier"
+  create: "créer"
+  profile_changed: "profil modifié"
+  man: "homme"
+  woman: "femme"
+  other: "autre"
+  comment: "commentaire"
+  os: "systeme d'exploitation"
+  registered: "enregistré(s)"
+  about: "A propos"
+  add_host: "ajouter un hôte"
+  users: "Utilisateurs"
+  public_users: "utilisateurs publics"
+  public_hosts: "hôtes publics"
+  register: "Inscription"
+  logout_confirm: "Etes-vous sur de vouloir vous déconnecter ?"
+  delete_confirm: "Etes-vous sur de vouloir supprimer?"
+  delete_account_confirm: "Etes-vous sur de vouloir supprimer votre compte ?"
+  delete_account: "Supprimer votre compte et toutes les données associées ?"
+  nohost: "Aucune hôte enregistré"
+  settings: "préférences"
+  update: "mettre à jour"
+  cancel: "annuler"
+  or: "ou"
+  contact: "contact"
+  hosts: "hôtes"
+  host: "hôte"
+  my_hosts: "mes hôtes"
+  show_hosts: "afficher les hôtes"
+  delete: "supprimer"
+  hostname: "nom d'hôte"
+  owner: "propriétaire"
+  statistics: "statistiques"
+  unknow_user: "Utilisateur inconnu"
+  api_key: "clef API"
+  hours: "heure(s)"
+  days: "jour(s)"
+  average: "moyenne"
+  account_registered: "Inscription réussie"
+  host_not_found: "Hôte non trouvé"
+  sample_number: "nombre de relevés"
+  statistics: "statistiques"
+  all: "toutes"
+  by_os: "par système d'exploitation"
+  user_hosts: "les hôtes de"
+  by_plateform: "par plateforme"
+  by_country: "par pays"
+  by_city: "par ville"
+  by_uptime: "par uptime"
+  uptime_average: "uptime moyen"
+  uptime_last: "dernier uptime"
+  rounded: "arrondi"
+  last_statement: "dernier relevé"
+  blocked: "bloqué"
+  block: "bloquer"
+  unblock: "débloquer"
+  block_confirm: "Etes-vous sur de vouloir bloquer ?"
+  unblock_confirm: "Etes-vous sur de vouloir débloquer ?"
+  connection: "connexion"
+  twitter: "connexion via Twitter"
+  nickname: "pseudonyme"
+  environment: "environnement"
+  created_at: "créé le"
+  updated_at: "mis à jour le"
+  context: "contexte"
+  edit: "éditer"
+  profil_not_found: "erreur de profil"
+  memory: "mémoire"
+  cpu: "processeur"
+  load_average: "charge moyenne" 
+  download: "téléchargement"
+  no_data: "aucune données"
+  captcha: "reCaptcha : les caractères ne correspondent pas"
+  first_sample_date: "date du premier relevé"
+  last_sample_date: "date du dernier relevé"
+  sample_date: "date du relevé"
+  highest_uptime: "uptime le plus élevé"
+  highest: "le plus élevé"
+  process_number: "nombre de processus"

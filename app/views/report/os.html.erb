@@ -1,0 +1,67 @@
+<div class="block" id="block-text">
+  <%= render :partial => "/report/menu_stats" %>
+
+  <div class="content"> 
+    <h2 class="title"></h2>
+
+    <div class="inner"> 
+      <p class="first">
+      </p>
+
+
+    <div id="placeholder" style="width:600px;height:300px"></div>
+    <%#= @osystems.inspect %>
+    <%#= @osystems.first['group'].last.counter %>
+
+    <script id="source" language="javascript" type="text/javascript">
+      $(function () {
+
+
+      <% count = 0 %>
+      <% @osystems.each do | os | %>
+      <%#= os.values %>
+      <%= "var #{os[:vendor]} = [[#{count.to_s}, #{os[:count].to_i}]];" %>
+      <% count += 2 %>
+      <% end %>
+    
+
+      <% count = 1 %>
+      var data = [
+      <% @osystems.each do | os | %>
+      <%= "{label: '#{os[:vendor]}', data: #{os[:vendor]}, bars: { show: true }}" -%>
+      <%= "," if count < @osystems.length -%>
+	  <% count += 1 %>
+	  <% end %>
+	  ];
+				 
+	  var options = {
+	  legend: { noColumns: 6 },
+	  yaxis: {tickDecimals: "number" }
+	  };
+				 
+	  var plot = $.plot($("#placeholder"), data, options);
+				 
+	  $("#overview").bind("plotselected", function (event, ranges) {
+	  plot.setSelection(ranges);
+	  });
+	  });
+    </script>
+
+
+
+    <p class="first">
+      <% if @hosts_count_os == 0 %>
+      <%= I18n.t :nohost -%>
+      <% else %>
+      
+      <% @osystems.each do | osystem| %>
+      <%= link_to osystem[:vendor].capitalize, :id => osystem[:vendor] %>  (<%= osystem[:count] %> total)
+      <br />
+      <% end %>
+      
+      <% end %>
+   </p>
+
+   </div>
+   </div>
+</div>

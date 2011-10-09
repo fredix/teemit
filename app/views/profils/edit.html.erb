@@ -1,0 +1,17 @@
+<div class="block" id="block-forms">
+  <div class="content">
+    <h2 class="title"><%= I18n.t(:profils) %></h2>
+    <div class="inner">
+
+      <% form_tag '/profils/update', :html => {:class => "form"} do %>
+      <div class="group">
+	  <%= hidden_field_tag 'profil[id]', @profil.id %>
+      <%= render :partial => "form" %>
+      <div class="group navform">
+	<%= submit_tag "#{I18n.t(:update)}", :html => {:class =>"button"} %> 
+      </div>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,85 @@
+<div class="block" id="block-forms">
+  <div class="content">
+    <div align="right" style="font-size:2em;color:black;"><b>#<%= @user.counter %></b></div>
+    <h2 class="title">
+      <% if current_user and @user == current_user %>
+        <%= I18n.t(:account) %>     
+      <% else %>
+        <%=h @user.login %>
+      <% end %>
+    </h2>
+    
+
+    <div class="inner">
+      <p>
+	<b>Avatar:</b>
+	<%= avatar_user(@user) %>
+      </p>
+
+      <p>
+	<% if current_user and @user == current_user %>
+        <b><%= I18n.t(:login) %> :</b>    
+	  <%=h @user.login %>
+	<% end %>
+      </p>
+
+
+      <p>
+          <b><%= I18n.t(:country) %> :</b>    
+	  <%=h @user.country.capitalize %>
+      </p>
+
+
+      <p>
+          <b><%= I18n.t(:city) %> :</b>    
+	  <%=h @user.city.capitalize %>
+      </p>
+
+
+      <p>
+        <b><%= I18n.t(:hosts) %> :</b>    
+	<%=h @user.hosts.count %>
+      </p>
+
+      <p><b><%= link_to I18n.t(:show_hosts), "/#{@user.login}/hosts" %></b>
+      </p>
+
+
+
+      <hr />
+
+      <% if current_user and @user == current_user %>
+      
+      <p>
+	<b>Login count:</b>
+	<%=h @user.sign_in_count %>
+      </p>
+         
+
+      <p>
+	<b>Last login at:</b>
+	<%=h @user.last_sign_in_at %>
+      </p>
+      
+      <p>
+	<b>Current login at:</b>
+	<%=h @user.current_sign_in_at %>
+      </p>
+      
+      <p>
+	<b>Last login ip:</b>
+	<%=h @user.last_sign_in_ip %>
+      </p>
+      
+      <p>
+	<b>Current login ip:</b>
+	<%=h @user.current_sign_in_ip %>
+      </p>
+      
+      <%= link_to 'Edit', edit_account_path %>
+
+      <% end %>
+
+    </div>
+  </div>
+</div>

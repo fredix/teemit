@@ -1,0 +1,17 @@
+<div class="block" id="block-text">
+  <div class="content">
+
+    <h2 class="title"><%= I18n.t(:host) %> : <b>
+	  <%= link_to (h @datas.first.hostname), :controller => :host,  :action => :show, :id => @datas.first.pub_uuid %>
+	  @ 
+	  <%#= avatar_user(@puser) %>
+
+      </b>
+    </h2>
+    <div class="inner">
+      <p class="first">
+	<%= image_tag "/images/uptime/#{@uuid}_uptime_chart.png", :alt => 'uptime' %>
+      </p>
+    </div>
+  </div>
+</div>

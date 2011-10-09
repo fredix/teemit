@@ -1,0 +1,40 @@
+/* Override here any style defined by web-app-theme */
+
+.secondary-navigation li.active span.strong {
+    color: red;
+    //font-size: 20px ;
+}
+
+
+.singleRow
+{
+    display: block;
+    margin-left: 1em;
+    margin-bottom: 1em;
+    //border:none;
+    background-color: #cfcfcf;
+    float: left;
+    width: 30%;
+    padding:  1em;
+    padding-left: 2px;
+}
+
+
+
+.legendFieldset
+{
+   background-color: #1a1a1a;
+   color: white;
+}
+
+
+.widget {
+    display: block;
+    padding: 10px 15px;  
+    align: right;
+    height: 10%; 
+    width: 100px;
+    font-size: 13px;  
+    border-bottom-width: 10px;
+    border-bottom-style: solid;
+}

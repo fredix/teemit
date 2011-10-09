@@ -1,0 +1,10 @@
+*~
+.bundle
+Gemfile.lock
+db/*.sqlite3
+log/*.log
+tmp/
+email.yml
+mongoid.yml
+nodecast_env
+uploads

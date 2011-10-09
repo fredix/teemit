@@ -1,0 +1,31 @@
+defaults: &defaults
+  host: localhost
+  # slaves:
+  #   - host: slave1.local
+  #     port: 27018
+  #   - host: slave2.local
+  #     port: 27019
+
+defaults: &defaults
+  host: localhost
+  slave_one:
+    port: 27017
+  use_object_ids: true
+  allow_dynamic_fields: true
+
+
+development:
+  <<: *defaults
+  database: nodecast_development
+
+test:
+  <<: *defaults
+  database: nodecast_test
+
+# set these environment variables on your prod server
+production:
+  host: <%= ENV['MONGOID_HOST'] %>
+  port: <%= ENV['MONGOID_PORT'] %>
+  username: <%= ENV['MONGOID_USERNAME'] %>
+  password: <%= ENV['MONGOID_PASSWORD'] %>
+  database: <%= ENV['MONGOID_DATABASE'] %>

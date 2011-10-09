@@ -1,0 +1,13 @@
+<div class="block" id="block-text">
+  <div class="content">
+    <h2 class="title"><%= I18n.t :welcome -%> <%= current_user.login if current_user -%></h2>
+    <div class="inner">
+      <p class="first">
+
+	<b><%= @hosts_publics %></b> <%= I18n.t :public_hosts -%> sur
+	<%= @hosts_all %>  <%= I18n.t :registered -%>
+      </p>
+
+    </div>
+  </div>
+</div>
