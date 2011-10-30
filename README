@@ -15,7 +15,8 @@ edit config/email.yml
 run mongodb
 
 export some environment variables :
-export NODECAST_VERSION=0.3.0
+export TEEMIT_VERSION=0.3.1
+export NODECAST_VERSION=0.9.5
 export RECAPTCHA_PUBLIC_KEY="YOURKEY"
 export RECAPTCHA_PRIVATE_KEY="YOURPRIVATEKEY"
 export GOOGLE_ANALYTICS="YOURCODE"
